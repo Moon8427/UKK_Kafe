@@ -12,7 +12,7 @@ class transaksi extends Model
     protected $primaryKey = 'id_transaksi';
     public $timestamps = false;
     public $fillable = [
-        'tgl_transaksi','id_user','id_meja','id_menu','nama_pelanggan','status'];
+        'tgl_transaksi','id_user','id_meja','nama_pelanggan','status'];
 
         public function userRelations()
         {
@@ -26,10 +26,6 @@ class transaksi extends Model
         public function detailTransaksiRelations()
         {
             return $this->hasMany(detail_transaksi::class, 'id_transaksi', 'id_transaksi');
-        }
-        public function menu()
-        {
-            return $this->hasMany(menu::class, 'id_menu', 'id_menu');
         }
 }
 
