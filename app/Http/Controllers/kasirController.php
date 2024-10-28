@@ -92,19 +92,15 @@ class kasirController extends Controller
             'id_meja' => $request->id_meja,  // Get id_meja from the request
             'nama_pelanggan' => $request->nama_pelanggan,
             'status' => 'blm_bayar',
-            'total_price' => $totalPrice, // This will be updated later
         ]);
 
         // Process the orders for each menu item
         foreach ($request->menu_items as $menuItem) {
             $menu = Menu::where('id_menu', $menuItem['id_menu'])->first();
-
+    
             if ($menu) {
-                $quantity = $menuItem['quantity'];
-                $subtotal = $menu->price * $quantity;
-
-                // Attach menu to the transaction using the pivot table
-                $transaksi->update(['id_menu'=> $menu->id_menu]);
+                // Update the transaction with id_menu
+                $transaksi->update(['id_menu' => $menu->id_menu]);
             }
         }
 
