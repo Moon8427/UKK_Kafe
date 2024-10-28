@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\adminController;
 use App\Http\Controllers\kasirController;
+use App\Http\Controllers\managerController;
+
 
     // Route::get('/user', function (Request $request) {
     //     return $request->user();
@@ -56,3 +58,5 @@ Route::prefix('transaksi')->group(function () {
     Route::post('/store', [kasirController::class, 'store'])->name('transaksi.store');
     Route::get('/{transaksi}', [kasirController::class, 'show'])->name('transaksi.show');
 });
+
+Route::get('/get_detail', [managerController::class, 'getDetailTransaksi'])->name('detail_transaki.show');

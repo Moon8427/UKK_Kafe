@@ -30,3 +30,4 @@ class transaksi extends Model
 }
 
 
+

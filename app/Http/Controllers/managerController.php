@@ -15,19 +15,19 @@ class managerController extends Controller
         $Auth = Auth::user();
 
         //Checks if the current user is ADMIN or not 
-        if ($Auth->role == "ADMIN") {
+        if ($Auth->role == "manager") {
 
             //check data transaksi data based on primary key
-            $dt_transaksi = transaksi::get();
+            $dt_transaksi = detail_transaksi::where('detailTransaksiRelations');
             return response()->json([
             'status' => true,
-            'Data'   => $dt_coffee,
-            'mesage' => 'Coffee has retrieved'
+            'Data'   => $dt_transaksi,
+            'mesage' => 'transaksi has retrieved'
         ]);
 
         } else {
             //If not then returns an error
-            return response()->json(['status' => false, 'message' => 'Hanya Admin yang bisa menambah'], status: 500);
+            return response()->json(['status' => false, 'message' => 'Hanya Manager yang bisa menambah'], status: 500);
         }
     }
 
